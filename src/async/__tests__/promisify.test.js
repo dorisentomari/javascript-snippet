@@ -21,7 +21,7 @@ describe('test promisify', () => {
     const p = path.resolve(__dirname, '../promisify.js1');
 
     return readFile(p, 'utf-8').catch(err => {
-      expect(err.errno).toEqual(-4058);
+      expect(err.errno).toBeLessThan(0);
     });
   });
 
