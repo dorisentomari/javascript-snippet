@@ -1,0 +1,16 @@
+language: node_js
+
+node_js:
+  - "12.0.0"
+
+branches:
+  only:
+    - master
+
+install:
+  - npm install
+  - npm run jest
+
+cache:
+  directories:
+    - "node_modules"
