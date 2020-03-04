@@ -191,4 +191,22 @@ describe('test checkDataType', () => {
     expect(checkDataType.isError(ERROR)).toEqual(true);
   });
 
+  test('12 测试 PositiveNumber 和 NegativeNumber 数据类型', () => {
+    const positiveNumber = 2;
+    const negativeNumber = -2;
+
+    expect(checkDataType.isPositiveNumber(positiveNumber)).toEqual(true);
+    expect(checkDataType.isPositiveNumber(negativeNumber)).toEqual(false);
+    expect(checkDataType.isNegativeNumber(positiveNumber)).toEqual(false);
+    expect(checkDataType.isNegativeNumber(negativeNumber)).toEqual(true);
+  });
+
+  test('13 测试 isEmptyObject 数据类型', () => {
+    const emptyObject = {};
+    const notEmptyObject = { name: 'mark' };
+
+    expect(checkDataType.isEmptyObject(emptyObject)).toEqual(true);
+    expect(checkDataType.isEmptyObject(notEmptyObject)).toEqual(false);
+  });
+
 });

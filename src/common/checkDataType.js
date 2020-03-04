@@ -24,4 +24,10 @@ export const isFunction = param => toString.call(param) === '[object Function]';
 
 export const isError = param => toString.call(param) === '[object Error]';
 
+export const isPositiveNumber = param => isNumber(param) && param > 0;
+
+export const isNegativeNumber = param => isNumber(param) && param < 0;
+
+export const isEmptyObject = param => isObject(param) && Object.keys(param).length === 0;
+
 // export const isHTMLDocument = param => toString.call(param) === '[object HTMLDocument]';
