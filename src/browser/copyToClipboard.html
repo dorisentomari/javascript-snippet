@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>copyToClipboard</title>
+</head>
+<body>
+
+<label for="textarea">
+    <textarea name="textarea" id="textarea" cols="30" rows="10"></textarea>
+</label>
+
+<button id="copy">copy</button>
+
+<script>
+    const copyToClipboard = str => {
+        const el = document.createElement('textarea');
+        el.value = str;
+        el.setAttribute('readonly', '');
+        el.style.position = 'absolute';
+        el.style.left = '-9999px';
+        document.body.appendChild(el);
+
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    };
+
+</script>
+
+<script>
+    const copyBtn = document.getElementById('copy');
+    const textarea = document.getElementById('textarea');
+
+    copyBtn.addEventListener('click', () => {
+        copyToClipboard(textarea.value);
+    });
+
+</script>
+</body>
+</html>

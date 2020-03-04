@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>serializeForm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+<body>
+
+<form id="form">
+    <ul>
+        <li>name:<input type="text" name="name"></li>
+        <li>age:<input type="text" name="age"></li>
+        <li>
+            <button id="submitBtn">get form data</button>
+        </li>
+    </ul>
+</form>
+
+<script>
+    const form = document.getElementById('form');
+    const submitBtn = document.getElementById('submitBtn');
+
+    const serializeForm = form => Array.from(new FormData(form), field => {
+        return field.map(encodeURIComponent).join('=')
+    }).join('&');
+
+    submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log(serializeForm(form));
+    });
+
+</script>
+
+</body>
+</html>
