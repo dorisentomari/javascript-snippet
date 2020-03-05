@@ -53,6 +53,6 @@ describe('test CSVtoJSON', () => {
     const t = () => {
       JSONtoCSV([1, 2, 3]);
     };
-    expect(t).toThrow(TypeError);
+    expect(t).toThrow(Error);
   });
 });

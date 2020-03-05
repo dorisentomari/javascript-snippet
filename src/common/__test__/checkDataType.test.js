@@ -209,4 +209,11 @@ describe('test checkDataType', () => {
     expect(checkDataType.isEmptyObject(notEmptyObject)).toEqual(false);
   });
 
+  test('14 测试 isValidDate 数据类型', () => {
+    expect(checkDataType.isValidDate('xxxxxxx')).toEqual(false);
+    expect(checkDataType.isValidDate(new Date())).toEqual(true);
+    expect(checkDataType.isValidDate('2019-01-01')).toEqual(true);
+    expect(checkDataType.isValidDate(2019)).toEqual(true);
+  });
+
 });

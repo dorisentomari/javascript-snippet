@@ -30,4 +30,6 @@ export const isNegativeNumber = param => isNumber(param) && param < 0;
 
 export const isEmptyObject = param => isObject(param) && Object.keys(param).length === 0;
 
+export const isValidDate = param => new Date(param).toString() !== 'Invalid Date';
+
 // export const isHTMLDocument = param => toString.call(param) === '[object HTMLDocument]';
