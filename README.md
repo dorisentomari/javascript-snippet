@@ -30,14 +30,26 @@
 + [CSVtoJSON](./src/csv/CSVtoJSON.js)
 + [JSONtoCSV](./src/csv/JSONtoCSV.js)
 
+## number
++ [fibonacciArray](./src/number/fibonacciArray.js)
+
 ## object
++ [deepClone](./src/object/deepClone.js)
 + [deepGet](./src/object/deepGet.js)
 + [getURLParameters](./src/object/getURLParameters.js)
 + [objectToQueryString](./src/object/objectToQueryString.js)
 + [uniqueElementsBy](./src/object/uniqueElementsBy.js)
 
 ## string
++ [escapeHTML](./src/string/escapeHTML.js)
++ [hexToRGB](./src/string/hexToRGB.js)
 + [palindrome](./src/string/palindrome.js)
++ [toBigCamel](./src/string/toBigCamel.js)
 
 ## time
++ [constant](./src/time/constant.js)
 + [formatDuration](./src/time/formatDuration.js)
++ [getDaysDiffBetweenDates](./src/time/getDaysDiffBetweenDates.js)
+
+---
+

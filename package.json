@@ -7,7 +7,8 @@
     "rollup": "rollup --config rollup.config.js --watch",
     "jest": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "coverage:server": "cd lcov-report && http-server",
-    "eslint": "eslint . --fix --ext .js"
+    "eslint": "eslint . --fix --ext .js",
+    "gen:menu": "node ./scripts/autoGenerateMenu.js"
   },
   "repository": {
     "type": "git",

@@ -4,6 +4,9 @@ const fs = require('fs');
 const rootDir = path.resolve(__dirname, '../src');
 const parentDirs = fs.readdirSync(rootDir);
 
+const startFlag = '# 目录\n';
+const endFlag = '---';
+
 class Menu {
   constructor(parentDirs) {
     this.parentDirs = parentDirs;
@@ -44,7 +47,7 @@ class Menu {
 
   generateMenu (menuObj) {
     const keys = Object.keys(menuObj);
-    return keys.reduce((prev, curr) => {
+    let menuStr = keys.reduce((prev, curr) => {
       let fileList = menuObj[curr];
       prev += `## ${curr}\n`;
       fileList.forEach(file =>{
@@ -53,6 +56,7 @@ class Menu {
       });
       return prev + '\n';
     }, '');
+      return startFlag + menuStr + endFlag;
   }
 
 }
