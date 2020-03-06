@@ -56,7 +56,7 @@ class Menu {
       });
       return prev + '\n';
     }, '');
-      return startFlag + menuStr + endFlag;
+    return startFlag + menuStr + endFlag;
   }
 
 }
