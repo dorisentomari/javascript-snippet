@@ -16,12 +16,12 @@ class Menu {
   getFileList() {
     this.parentDirs.forEach(parentDir => {
       const currentDir = path.resolve(rootDir, parentDir);
-      let stat = fs.statSync(currentDir);
+      const stat = fs.statSync(currentDir);
       if (stat.isDirectory()) {
-        let list = fs.readdirSync(currentDir);
+        const list = fs.readdirSync(currentDir);
         list.forEach(file => {
-          let filePath = path.resolve(currentDir, file);
-          let _stat = fs.statSync(filePath);
+          const filePath = path.resolve(currentDir, file);
+          const _stat = fs.statSync(filePath);
           if (!_stat.isDirectory()) {
             this.fileList.push(filePath);
           }
@@ -32,9 +32,9 @@ class Menu {
 
   getMenuObj () {
     return this.fileList.reduce((prev, curr) => {
-      let sepList = curr.split(path.sep);
-      let menuName = sepList[sepList.length - 2];
-      let fileName = sepList[sepList.length - 1];
+      const sepList = curr.split(path.sep);
+      const menuName = sepList[sepList.length - 2];
+      const fileName = sepList[sepList.length - 1];
 
       if (prev[menuName]) {
         prev[menuName].push(fileName);
@@ -47,10 +47,10 @@ class Menu {
 
   generateMenu (menuObj) {
     const keys = Object.keys(menuObj);
-    let menuStr = keys.reduce((prev, curr) => {
-      let fileList = menuObj[curr];
+    const menuStr = keys.reduce((prev, curr) => {
+      const fileList = menuObj[curr];
       prev += `## ${curr}\n`;
-      fileList.forEach(file =>{
+      fileList.forEach(file => {
         const [name,] = file.split('.');
         prev += `+ [${name}](./src/${curr}/${file})\n`;
       });
@@ -63,6 +63,6 @@ class Menu {
 
 const menu = new Menu(parentDirs);
 menu.getFileList();
-let menuObj = menu.getMenuObj();
-let menuStr = menu.generateMenu(menuObj);
+const menuObj = menu.getMenuObj();
+const menuStr = menu.generateMenu(menuObj);
 console.log(menuStr);

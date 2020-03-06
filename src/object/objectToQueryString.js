@@ -1,11 +1,11 @@
-import { isNumber, isString, isBoolean } from '../common/checkDataType';
+import { isBoolean, isNumber, isString } from '../common/checkDataType';
 
 const objectToQueryString = queryParameters => {
   if (!queryParameters) {
     return '';
   }
 
-  return Object.entries(queryParameters).reduce((queryString, [key, value], index) => {
+  return Object.entries(queryParameters).reduce((queryString, [key, value]) => {
     const symbol = queryString.length === 0 ? '?' : '&';
 
     if (isNumber(value) || isString(value) || isBoolean(value)) {

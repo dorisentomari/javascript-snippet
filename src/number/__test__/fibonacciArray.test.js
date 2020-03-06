@@ -6,7 +6,7 @@ describe('测试 fibonacciArray', () => {
     expect(fibonacciArray(6)).toEqual([0, 1, 1, 2, 3, 5]);
   });
 
-  test('01 测试错误参数', () => {
+  test('02 测试错误参数', () => {
     expect(fibonacciArray(-1)).toEqual([]);
     expect(fibonacciArray()).toEqual([]);
     expect(fibonacciArray(null)).toEqual([]);

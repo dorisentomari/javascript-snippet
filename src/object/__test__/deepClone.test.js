@@ -1,18 +1,18 @@
 import deepClone from '../deepClone';
 
-let o1 = { name: 'jack', home: { shanghai: { area: 'pudong' }, beijing: { area: 'chaoyang' } } };
+const o1 = { name: 'jack', home: { shanghai: { area: 'pudong' }, beijing: { area: 'chaoyang' } } };
 
-let a1 = [
+const a1 = [
   [0, 0, 0, 0],
   [1, 1, 1, 1],
   [2, 2, 2, 2],
 ];
 
-let o2 = {
+const o2 = {
   matrix: a1
 };
 
-let a2 = [{ name: 'jack', home: 'shanghai' }, { name: 'mark', home: 'beijing' }];
+const a2 = [{ name: 'jack', home: 'shanghai' }, { name: 'mark', home: 'beijing' }];
 
 describe('test deepClone', () => {
 

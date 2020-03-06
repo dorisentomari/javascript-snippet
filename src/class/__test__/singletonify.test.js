@@ -16,10 +16,10 @@ describe('test singletonify', () => {
     const UserSingletonClass = singletonify(User);
 
     const user = new UserSingletonClass('jack');
-    let userName1 = user.getUserName();
+    const userName1 = user.getUserName();
 
     const user2 = new UserSingletonClass('mark');
-    let userName2 = user2.getUserName();
+    const userName2 = user2.getUserName();
 
     expect(userName1).toEqual(userName2);
 

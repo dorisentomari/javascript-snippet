@@ -1,6 +1,6 @@
 import objectToQueryString from '../objectToQueryString';
 
-let obj = {
+const obj = {
   name: 'mark',
   age: 18,
   home: 'shanghai',
@@ -15,7 +15,7 @@ let obj = {
 describe('test objectToQueryString', () => {
 
   test('01 测试 正常参数', () => {
-    let expectResult = '?name=mark&age=18&home=shanghai&isStudent=true';
+    const expectResult = '?name=mark&age=18&home=shanghai&isStudent=true';
     expect(objectToQueryString(obj)).toEqual(expectResult);
   });
 

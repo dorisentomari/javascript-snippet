@@ -32,6 +32,7 @@
 
 ## number
 + [fibonacciArray](./src/number/fibonacciArray.js)
++ [randomNumberByRange](./src/number/randomNumberByRange.js)
 
 ## object
 + [deepClone](./src/object/deepClone.js)
@@ -52,4 +53,3 @@
 + [getDaysDiffBetweenDates](./src/time/getDaysDiffBetweenDates.js)
 
 ---
-

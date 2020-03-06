@@ -1,11 +1,11 @@
-import { isNull, isUndefined, isArray } from '../common/checkDataType';
+import { isArray, isNull, isUndefined } from '../common/checkDataType';
 
 const deepClone = (obj) => {
   if (isNull(obj) || isUndefined(obj)) {
     return obj;
   }
 
-  let clone = Object.assign({}, obj);
+  const clone = Object.assign({}, obj);
 
   Object.keys(clone).forEach(key => {
     clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key];
