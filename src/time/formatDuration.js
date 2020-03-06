@@ -1,12 +1,8 @@
 import {
   ONE_SECOND,
-  ONE_SECOND_MILLISECONDS,
   ONE_MINUTE,
-  ONE_MINUTE_SECONDS,
   ONE_HOUR,
-  ONE_HOUR_MINUTES,
-  ONE_DAY,
-  ONE_DAY_HOURS
+  ONE_DAY
 } from './constant';
 import { isNumber } from '../common/checkDataType';
 

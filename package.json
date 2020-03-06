@@ -5,10 +5,15 @@
   "main": "src/index.js",
   "scripts": {
     "rollup": "rollup --config rollup.config.js --watch",
-    "jest": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "coverage:server": "cd lcov-report && http-server",
     "eslint": "eslint . --fix --ext .js",
     "gen:menu": "node ./scripts/autoGenerateMenu.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run eslint && npm run test"
+    }
   },
   "repository": {
     "type": "git",
@@ -29,6 +34,7 @@
     "babel-jest": "^25.1.0",
     "coveralls": "^3.0.9",
     "eslint": "^6.8.0",
+    "husky": "^4.2.3",
     "jest": "^25.1.0",
     "rollup": "^1.32.0",
     "rollup-plugin-eslint": "^7.0.0",
