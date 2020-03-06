@@ -1,4 +1,4 @@
-import Vector from './data-structure/Vector/Vector';
+import Vector from './data-structure/Vector';
 
 const vector = new Vector<number>(20);
 

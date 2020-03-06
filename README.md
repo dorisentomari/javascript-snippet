@@ -30,6 +30,10 @@
 + [CSVtoJSON](./src/csv/CSVtoJSON.js)
 + [JSONtoCSV](./src/csv/JSONtoCSV.js)
 
+## data-structure
++ [List](./src/data-structure/List.ts)
++ [Vector](./src/data-structure/Vector.ts)
+
 ## number
 + [fibonacciArray](./src/number/fibonacciArray.js)
 + [randomNumberByRange](./src/number/randomNumberByRange.js)

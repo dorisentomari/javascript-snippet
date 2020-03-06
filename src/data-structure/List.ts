@@ -1,6 +1,17 @@
-import ListNode from './ListNode';
+class ListNode<T> {
+  value: T;
+  prev: ListNode<T>;
+  next: ListNode<T>;
 
-class DoubleLinkedList<T> {
+  constructor(value: T) {
+    this.value = value;
+    this.next = null;
+    this.prev = null;
+  }
+}
+
+
+class List<T> {
 
   private head: ListNode<T>;
   private tail: ListNode<T>;
@@ -153,4 +164,4 @@ class DoubleLinkedList<T> {
 
 }
 
-export default DoubleLinkedList;
+export default List;
