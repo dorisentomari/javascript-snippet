@@ -4,7 +4,7 @@ import htmlTemplate from 'rollup-plugin-generate-html-template';
 import typescript from 'rollup-plugin-typescript';
 
 export default {
-  input: './src/index.ts',
+  input: './src/index.js',
   output: {
     file: './dist/bundle.js',
     format: 'cjs'
