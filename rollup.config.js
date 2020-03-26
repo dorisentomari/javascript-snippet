@@ -3,7 +3,6 @@ import { eslint } from 'rollup-plugin-eslint';
 import htmlTemplate from 'rollup-plugin-generate-html-template';
 import typescript from 'rollup-plugin-typescript';
 
-
 export default {
   input: './src/index.ts',
   output: {
@@ -13,7 +12,8 @@ export default {
   plugins: [
     serve({
       port: 8080,
-      contentBase: ['./dist']
+      contentBase: ['./dist'],
+      open: true,
     }),
     typescript(),
     htmlTemplate({

@@ -8,7 +8,8 @@
     "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "coverage:server": "cd lcov-report && http-server",
     "eslint": "eslint . --fix --ext .js,.ts",
-    "gen:menu": "node ./scripts/autoGenerateMenu.js"
+    "gen:menu": "node ./scripts/autoGenerateMenu.js",
+    "tsc": "tsc --watch"
   },
   "husky": {
     "hooks": {
@@ -30,7 +31,9 @@
     "@babel/plugin-transform-regenerator": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.6",
+    "@babel/preset-typescript": "^7.8.3",
     "@babel/runtime": "^7.8.4",
+    "@types/jest": "^25.1.4",
     "@typescript-eslint/eslint-plugin": "^2.22.0",
     "@typescript-eslint/parser": "^2.22.0",
     "babel-jest": "^25.1.0",
@@ -43,6 +46,7 @@
     "rollup-plugin-generate-html-template": "^1.6.1",
     "rollup-plugin-serve": "^1.0.1",
     "rollup-plugin-typescript": "^1.0.1",
+    "ts-jest": "^25.2.1",
     "tslib": "^1.11.1",
     "typescript": "^3.8.3"
   }
