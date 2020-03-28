@@ -93,8 +93,7 @@ export class List {
 
     let currentListNode = this._head;
 
-    // 没有首节点
-    if (!currentListNode) {
+    if (!this._head) {
       return null;
     }
 
@@ -107,6 +106,7 @@ export class List {
         if (newListNode.next) {
           newListNode.next.prev = newListNode;
         } else {
+          // 尾节点
           this._tail = newListNode;
         }
         this._capacity++;
@@ -130,13 +130,12 @@ export class List {
 
     let currentListNode = this._head;
 
-    if (!currentListNode) {
-      return null;
-    }
-
     if (currentListNode.value === value) {
       this._head = currentListNode.next;
-      this._head.prev = null;
+      if (this._head) {
+        this._head.prev = null;
+      }
+
       currentListNode.next = currentListNode.prev = null;
       this._capacity--;
       return value;
@@ -175,10 +174,6 @@ export class List {
 
     const currentListNode = this._head;
 
-    if (!currentListNode) {
-      return null;
-    }
-
     if (!this._head.next) {
       this._head = null;
       this._tail = null;
@@ -199,10 +194,6 @@ export class List {
     }
 
     const currentListNode = this._tail;
-
-    if (!currentListNode) {
-      return null;
-    }
 
     if (!this._tail.prev) {
       this._head = null;

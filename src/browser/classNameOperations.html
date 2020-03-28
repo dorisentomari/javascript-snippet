@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>classNameOperations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      border: 2px solid blue;
+    }
+
+    .red {
+      background: red;
+    }
+
+    .green {
+      background: green;
+    }
+
+  </style>
+</head>
+<body>
+
+<div id="box"></div>
+
+background color: <input type="text" id="color">
+<button id="addBtn">addClass</button>
+<button id="removeBtn">removeClick</button>
+
+<script>
+
+  window.onload = function () {
+    const box = document.getElementById('box');
+    const color = document.getElementById('color');
+    const addBtn = document.getElementById('addBtn');
+    const removeBtn = document.getElementById('removeBtn');
+
+    addBtn.addEventListener('click', () => {
+      addClass(box, color.value);
+    });
+
+    removeBtn.addEventListener('click', () => {
+      removeClass(box, color.value);
+    });
+
+  };
+
+  const hasClass = (dom, className) => {
+    return dom.classList.contains(className);
+  };
+
+  const removeClass = (dom, className) => {
+    return dom.classList.remove(className);
+  };
+
+  const addClass = (dom, className) => {
+    if (!hasClass(dom, className)) {
+      dom.classList.add(className);
+    }
+  };
+
+</script>
+
+</body>
+</html>

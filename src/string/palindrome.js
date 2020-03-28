@@ -1,5 +1,6 @@
 import { isString } from '../common/checkDataType';
 
+// 回文字符串
 const palindrome = (str = '') => {
   if (!isString(str)) {
     return false;
