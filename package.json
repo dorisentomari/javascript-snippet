@@ -24,7 +24,9 @@
   "author": "dawnight",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^3.0.0"
+    "chalk": "^3.0.0",
+    "datastructures-js": "^6.0.2",
+    "mheap": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
