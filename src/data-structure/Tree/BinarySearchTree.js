@@ -1,3 +1,5 @@
+import { Queue } from '../Queue/Queue';
+
 /*
 * 二叉搜索树
 * 每个节点的键值大于左孩子
@@ -142,5 +144,150 @@ export class BinarySearchTree {
 
     __postOrder(this.root);
   }
+
+  // 层序遍历
+  levelOrder() {
+    const q = new Queue(this.size());
+
+    q.push(this.root);
+
+    while (!q.isEmpty()) {
+      const node = q.front();
+
+      q.dequeue();
+
+      console.log(node.key);
+
+      if (node.left) {
+        q.push(node.left);
+      }
+
+      if (node.right) {
+        q.push(node.right);
+      }
+    }
+
+  }
+
+  // 获取最小值
+  minNode() {
+    if (this.isEmpty()) {
+      return null;
+    }
+
+    const __minNode = node => {
+      if (node.left === null) {
+        return node;
+      }
+      return __minNode(node.left);
+    };
+
+    const minNode = __minNode(this.root);
+    return minNode.value;
+  }
+
+  // 获取最大值
+  maxNode() {
+    if (this.isEmpty()) {
+      return null;
+    }
+
+    const __maxNode = node => {
+      if (node.right === null) {
+        return node;
+      }
+      return __maxNode(node.right);
+    };
+
+    const maxNode = __maxNode(this.root);
+    return maxNode.value;
+  }
+
+  // 删除最小值节点
+  removeMin() {
+    if (this.isEmpty()) {
+      return null;
+    }
+
+    const __removeMin = node => {
+      if (node.left === null) {
+        const rightNode = node.right;
+        this._capacity--;
+        return rightNode;
+      }
+      node.left = __removeMin(node.left);
+      return node;
+    };
+
+    __removeMin(this.root);
+  }
+
+  // 删除最大值节点
+  removeMax() {
+    if (this.isEmpty()) {
+      return null;
+    }
+    const __removeMax = node => {
+      if (node.right === null) {
+        const leftNode = node.left;
+        this._capacity--;
+        return leftNode;
+      }
+      node.right = __removeMax(node.right);
+      return node;
+    };
+
+    __removeMax(this.root);
+  }
+
+  // 删除
+  remove(key) {
+    const __remove = (node, key) => {
+      if (node === null) {
+        return null;
+      }
+      if (key < node.key) {
+        node.left = __remove(node.left, key);
+      } else if (key < node.key) {
+        node.right = __remove(node.right, key);
+      } else {
+        if (node.left === null) {
+          const rightNode = node.right;
+          this._capacity--;
+          return rightNode;
+        }
+        if (node.right === null) {
+          const leftNode = node.left;
+          this._capacity--;
+          return leftNode;
+        }
+        const successor = this.minNode(node.right);
+        this._capacity++;
+        successor.right = this.removeMin(node.right);
+        successor.left = node.left;
+        this._capacity--;
+        return successor;
+      }
+    };
+
+    this.root = __remove(this.root, key);
+  }
+
+  // 找距离 value 最近的小于 target 的值
+  floor(value) {
+  }
+
+  // 找距离 value 最近的大于 target 的值
+  ceil(value) {
+  }
+
+  // 找到一个元素的排名
+  rank(node) {
+  }
+
+  // 找到排名为 n 的元素
+  select(n) {
+  }
+
 
 }
