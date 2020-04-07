@@ -1,3 +1,9 @@
+/*
+* 用途：
+*   用于操作记录的回撤
+*   程序调用的系统栈
+* */
+
 export class Stack {
 
   constructor(size = 10) {

@@ -1,3 +1,4 @@
+// 数组队列
 export class Queue {
   constructor(size) {
     this._size = size;
@@ -41,6 +42,7 @@ export class Queue {
     return this._data[this._capacity - 1];
   }
 
+  // O(1)
   enqueue(element) {
     if (this.isFull()) {
       return null;
@@ -50,6 +52,7 @@ export class Queue {
     return true;
   }
 
+  // O(n)
   dequeue() {
     if (this.isEmpty()) {
       return null;
@@ -63,4 +66,59 @@ export class Queue {
     return this._data;
   }
 
+}
+
+// 循环队列
+export class LoopQueue {
+  constructor(capacity = 10) {
+    this._data = Array.from({ length: capacity + 1 });
+    this.front = 0;
+    this.tail = 0;
+    this._size = 0;
+  }
+
+  capacity() {
+    return this._data.length - 1;
+  }
+
+  size() {
+    return this._size;
+  }
+
+  isEmpty() {
+    return this.front === this.tail;
+  }
+
+  isFull() {
+    return (this.tail + 1) % this._data.length === this.front;
+  }
+
+  enqueue(e) {
+    if (this.isFull()) {
+      return false;
+    }
+    this._data[this.tail] = e;
+    this.tail = (this.tail + 1) % this._data.length;
+    this._size++;
+  }
+
+  dequeue() {
+    if (this.isEmpty()) {
+      return false;
+    }
+
+    const ret = this._data[this.front];
+    this._data[this.front] = null;
+    this.front = (this.front + 1) % this._data.length;
+    this._size--;
+    return ret;
+  }
+
+  traverse() {
+    const res = [];
+    for (let i = this.front; i !== this.tail; i = (i + 1) % this._data.length) {
+      res.push(this._data[i]);
+    }
+    return res;
+  }
 }

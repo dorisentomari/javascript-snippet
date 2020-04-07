@@ -1,22 +1,7 @@
-import { Queue } from '../Queue/Queue';
-
-/*
-* 二叉搜索树
-* 每个节点的键值大于左孩子
-* 每个节点的键值小于右孩子
-* 以左右孩子为根的子树仍未二分搜索树
-*
-* 二叉搜索树不一定是一个完全二叉树
-*
-* 遍历
-* 前序遍历: 先访问当前节点，再依次递归访问左右子树
-* 中序遍历: 先递归访问左子树，再访问自身，最后递归访问右子树
-* 后续遍历: 先递归访问左右子树，再访问自身节点
-* */
+import { Stack } from '../Stack/Stack';
 
 class TreeNode {
-  constructor(key, value) {
-    this.key = key;
+  constructor(value) {
     this.value = value;
     this.left = null;
     this.right = null;
@@ -24,270 +9,248 @@ class TreeNode {
 }
 
 export class BinarySearchTree {
-  constructor(size) {
+  constructor() {
     this.root = null;
-    this._size = size;
-    this._capacity = 0;
+    this.left = null;
+    this.right = null;
+    this._size = 0;
   }
 
-  size() {
+  get size() {
     return this._size;
   }
 
-  capacity() {
-    return this._capacity;
-  }
-
   isEmpty() {
-    return this._capacity === 0;
+    return this.size === 0;
   }
 
-  isFull() {
-    return this.size() === this.capacity();
-  }
-
-  insert(key, value) {
-    // 以 node 为根插入节点(key, value);
-    const __insert = (node, key, value) => {
+  add(e) {
+    const __add = (node, e) => {
       if (node === null) {
-        this._capacity++;
-        return new TreeNode(key, value);
+        this._size++;
+        return new TreeNode(e);
       }
 
-      if (key === node.key) {
-        node.value = value;
-      } else if (key < node.key) {
-        __insert(node.left, key, value);
-      } else {
-        __insert(node.right, key, value);
+      if (node.value > e) {
+        node.left = __add(node.left, e);
+      } else if (node.value < e) {
+        node.right = __add(node.right, e);
       }
 
       return node;
     };
 
-    this.root = __insert(this.root, key, value);
+    if (this.root === null) {
+      this.root = new TreeNode(e);
+      this._size++;
+    } else {
+      __add(this.root, e);
+    }
   }
 
-  contain(key) {
-    const __contain = (node, key) => {
+  contains(e) {
+    const __contains = (node, e) => {
       if (node === null) {
         return false;
       }
 
-      if (node.key === key) {
+      if (node.value === e) {
         return true;
-      } else if (node.key < key) {
-        __contain(node.left, key);
+      } else if (node.value < e) {
+        return __contains(node.right, e);
       } else {
-        __contain(node.right, key);
+        return __contains(node.left, e);
       }
     };
-
-
-    return __contain(this.root, key);
+    return __contains(this.root, e);
   }
 
-  // 返回 value,
-  search(key) {
-    const __search = (node, key) => {
-      if (node === null) {
-        return null;
-      }
-
-      if (node.key === key) {
-        return node.value;
-      } else if (node.key < key) {
-        return __search(node.left, key);
-      } else {
-        return __search(node.right, key);
-      }
-    };
-
-    return __search(this.root, key);
-  }
-
-  // 前序遍历
+  // 先序遍历
   preOrder() {
+    const result = [];
     const __preOrder = node => {
       if (node !== null) {
-        console.log(node.key);
+        result.push(node.value);
         __preOrder(node.left);
         __preOrder(node.right);
       }
     };
 
     __preOrder(this.root);
+    return result;
   }
 
   // 中序遍历
   inOrder() {
+    const result = [];
     const __inOrder = node => {
       if (node !== null) {
         __inOrder(node.left);
-        console.log(node.key);
+        result.push(node.value);
         __inOrder(node.right);
       }
     };
 
     __inOrder(this.root);
+    return result;
   }
 
   // 后序遍历
   postOrder() {
+    const result = [];
     const __postOrder = node => {
       if (node !== null) {
         __postOrder(node.left);
         __postOrder(node.right);
-        console.log(node.key);
+        result.push(node.value);
       }
     };
 
     __postOrder(this.root);
+    return result;
   }
 
-  // 层序遍历
-  levelOrder() {
-    const q = new Queue(this.size());
-
-    q.push(this.root);
-
-    while (!q.isEmpty()) {
-      const node = q.front();
-
-      q.dequeue();
-
-      console.log(node.key);
-
-      if (node.left) {
-        q.push(node.left);
+  // 使用栈完成先序遍历
+  preOrderStack() {
+    const stack = new Stack();
+    stack.push(this.root);
+    const result = [];
+    while (!stack.isEmpty()) {
+      const currentNode = stack.pop();
+      result.push(currentNode.value);
+      if (currentNode.right) {
+        stack.push(currentNode.right);
       }
-
-      if (node.right) {
-        q.push(node.right);
+      if (currentNode.left) {
+        stack.push(currentNode.left);
       }
     }
-
+    return result;
   }
 
-  // 获取最小值
-  minNode() {
+  // 树的最小值
+  minimum() {
     if (this.isEmpty()) {
-      return null;
+      return false;
     }
 
-    const __minNode = node => {
-      if (node.left === null) {
+    const __minimum = node => {
+      if (!node.left) {
         return node;
       }
-      return __minNode(node.left);
+      return __minimum(node.left);
     };
-
-    const minNode = __minNode(this.root);
-    return minNode.value;
+    return __minimum(this.root);
   }
 
-  // 获取最大值
-  maxNode() {
+  // 树的最大值
+  maximum() {
     if (this.isEmpty()) {
-      return null;
+      return false;
     }
 
-    const __maxNode = node => {
-      if (node.right === null) {
+    const __maximum = node => {
+      if (!node.right) {
         return node;
       }
-      return __maxNode(node.right);
+      return __maximum(node.right);
     };
 
-    const maxNode = __maxNode(this.root);
-    return maxNode.value;
+    return __maximum(this.root);
   }
 
-  // 删除最小值节点
-  removeMin() {
+  // 删除最小值
+  removeMinimum() {
     if (this.isEmpty()) {
-      return null;
+      return false;
     }
 
-    const __removeMin = node => {
+    const __removeMinimum = node => {
       if (node.left === null) {
         const rightNode = node.right;
-        this._capacity--;
+        node.right = null;
+        this._size--;
         return rightNode;
       }
-      node.left = __removeMin(node.left);
+      node.left = __removeMinimum(node.left);
       return node;
     };
-
-    __removeMin(this.root);
+    const result = this.minimum();
+    this.root = __removeMinimum(this.root);
+    return result;
   }
 
-  // 删除最大值节点
-  removeMax() {
+  // 删除最大值
+  removeMaximum() {
     if (this.isEmpty()) {
-      return null;
+      return false;
     }
-    const __removeMax = node => {
+
+    const __removeMaximum = node => {
       if (node.right === null) {
         const leftNode = node.left;
-        this._capacity--;
+        node.left = null;
+        this._size--;
         return leftNode;
       }
-      node.right = __removeMax(node.right);
+      node.right = __removeMaximum(node.right);
       return node;
     };
 
-    __removeMax(this.root);
+    const result = this.maximum();
+    this.root = __removeMaximum(this.root);
+    return result;
   }
 
-  // 删除
-  remove(key) {
-    const __remove = (node, key) => {
+  // TODO
+  // 删除任意元素
+  remove(value) {
+    const __remove = (node, value) => {
       if (node === null) {
         return null;
       }
-      if (key < node.key) {
-        node.left = __remove(node.left, key);
-      } else if (key < node.key) {
-        node.right = __remove(node.right, key);
+
+      if (node.value > value) {
+        console.log('>', node);
+        node.right = __remove(node.right, value);
+        return node;
+      } else if (node.value < value) {
+        console.log('<', node);
+        node.left = __remove(node.left, value);
+        return node;
       } else {
+        console.log('=', node);
+        // node.value === value;
         if (node.left === null) {
           const rightNode = node.right;
-          this._capacity--;
+          node.right = null;
+          this._size--;
           return rightNode;
         }
+
         if (node.right === null) {
           const leftNode = node.left;
-          this._capacity--;
+          node.left = null;
+          this._size--;
           return leftNode;
         }
-        const successor = this.minNode(node.right);
-        this._capacity++;
-        successor.right = this.removeMin(node.right);
+        /*
+        * 待删除节点左右子均不为空的情况
+        * 找到比待删除节点大的最小节点，即待删除节点右子树的最小节点
+        * 用这个节点顶替待删除节点的位置
+        * */
+        // 后继节点
+        const successor = this.minimum(node.right);
+        // 在 removeMinimum 中进行了 size 减操作
+        successor.right = this.removeMinimum(node.right);
         successor.left = node.left;
-        this._capacity--;
+        node.left = node.right = null;
         return successor;
       }
+
     };
 
-    this.root = __remove(this.root, key);
+    this.root = __remove(this.root, value);
+    return true;
   }
-
-  // 找距离 value 最近的小于 target 的值
-  floor(value) {
-  }
-
-  // 找距离 value 最近的大于 target 的值
-  ceil(value) {
-  }
-
-  // 找到一个元素的排名
-  rank(node) {
-  }
-
-  // 找到排名为 n 的元素
-  select(n) {
-  }
-
-
 }
